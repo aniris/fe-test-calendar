@@ -8,7 +8,35 @@
 	<link rel="stylesheet" href="css/main.min.css">
 </head>
 <body>
-	<div class="test">test</div>
+
+	<main class="app">
+		<div class="cal-panel">
+      <div class="container">
+        <div class="flex-container">
+          <div class="panel-buttons">
+            <button class="btn-add panel-btn">Добавить</button>
+            <button class="btn-update panel-btn">Обновить</button>
+          </div>
+          <div class="panel-search search">
+            <img class="search-icon" src="icons/search.svg">
+            <input type="text" class="search-input" placeholder="Событие, дата или участник">
+          </div>
+        </div>
+      </div>
+		</div>
+
+    <div class="cal">
+      <div class="container">
+        <div class="cal-nav">
+          <button class="nav-btn btn-prev">&#9668;</button>
+          <span class="date">Март 2013</span>
+          <button class="nav-btn btn-next">&#9658;</button>
+          <button class="nav-btn btn-today">Сегодня</button>
+        </div>
+        <div id="cal-table"></div>
+      </div>
+    </div>
+	</main>
 
 	<script src="js/scripts.min.js"></script>
 </body>
