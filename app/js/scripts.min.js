@@ -7,18 +7,17 @@ const Events = [
     }
 ];
 
-class constCal {
-    constructor(week, mouth, day_ms) {
-        this.week =  [
+const constCal =  {
+        week: [
             'Понедельник',
             'Вторник',
             'Среда',
             'Четверг',
             'Пятница',
             'Суббота',
-            'Воскресенье'];
+            'Воскресенье'],
 
-        this.month = [
+        month: [
             'Январь',
             'Февраль',
             'Март',
@@ -30,11 +29,10 @@ class constCal {
             'Сентябрь',
             'Октябрь',
             'Ноябрь',
-            'Декабрь'];
+            'Декабрь'],
 
-        this.day_ms =  86400000;
-    }
-}
+        day_ms: 86400000
+};
 
 
 function getCurrentDate() {
@@ -59,7 +57,6 @@ function addTD(text) {
 }
 
 function getTable(currentMouth, currentYear) {
-    let cal = new constCal;
     let calTable, table, tbody, tr, td, day, date;
 
     calTable = document.getElementById("cal-table");
@@ -73,7 +70,7 @@ function getTable(currentMouth, currentYear) {
     let firstDayMs = new Date(currentYear, currentMouth,1,0,0,0,0).getTime();
 
     // первый день в таблице
-    day = firstDayMs - (cal.day_ms*(firstDayMouth-1));
+    day = firstDayMs - (constCal.day_ms*(firstDayMouth-1));
     date = new Date(day);
 
     // генерация таблицы
@@ -87,7 +84,7 @@ function getTable(currentMouth, currentYear) {
         for (let col = 0; col < 7; col++) {
             // если это первая строка, помимо даты добавляем название недели
             if (row == 0) {
-                td = addTD(cal.week[col] + ", " + date.getDate());
+                td = addTD(constCal.week[col] + ", " + date.getDate());
             } else {
                 // иначе просто дату
                 td = addTD(date.getDate());
@@ -115,11 +112,52 @@ function getTable(currentMouth, currentYear) {
             });
 
             tr.appendChild(td);
-            day += cal.day_ms; // получаем след день
+            day += constCal.day_ms; // получаем след день
             date = new Date(day);
         }
     }
 }
 
-getTable(getCurrentDate().month, getCurrentDate().year);
+let month = getCurrentDate().month,
+    year = getCurrentDate().year,
+    spanMonth = document.getElementById("month"),
+    spanYear = document.getElementById("year");
+
+spanMonth.innerHTML = constCal.month[month] + ' ';
+spanYear.innerHTML = year;
+getTable(month, year);
+
+document.getElementById('prev').onclick = function() {
+    calTable = document.getElementById("cal-table");
+    calTable.innerHTML = '';
+
+    if(month == 0) {
+        month = 11;
+        year--;
+    }else{
+        month--;
+    }
+
+    spanMonth.innerHTML = constCal.month[month] + ' ';
+    spanYear.innerHTML = year;
+    getTable(month, year);
+};
+
+document.getElementById('next').onclick = function() {
+    calTable = document.getElementById("cal-table");
+    calTable.innerHTML = '';
+
+    if(month == 11) {
+        month = 0;
+        year++;
+    }else{
+        month++;
+    }
+
+
+    spanMonth.innerHTML = constCal.month[month] + ' ';
+    spanYear.innerHTML = year;
+    getTable(month, year);
+};
+
 
