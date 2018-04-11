@@ -160,4 +160,16 @@ document.getElementById('next').onclick = function() {
     getTable(month, year);
 };
 
+document.getElementById('today').onclick = function() {
+    calTable = document.getElementById("cal-table");
+    calTable.innerHTML = '';
+
+    month = getCurrentDate().month;
+    year = getCurrentDate().year;
+
+    spanMonth.innerHTML = constCal.month[month] + ' ';
+    spanYear.innerHTML = year;
+    getTable(month, year);
+};
+
 

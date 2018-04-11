@@ -9,6 +9,10 @@ button,input:focus {
   outline: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .container {
   width: 900px;
   margin: 0 auto;
