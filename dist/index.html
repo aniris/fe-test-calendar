@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<title>Title</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="css/main.min.css">
+</head>
+<body>
+
+	<main class="app">
+		<div class="cal-panel">
+      <div class="container">
+        <div class="flex-container">
+          <div class="panel-buttons">
+            <button class="btn-add panel-btn">Добавить</button>
+            <button class="btn-update panel-btn">Обновить</button>
+          </div>
+          <div class="panel-search search">
+            <img class="search-icon" src="icons/search.svg">
+            <input type="text" class="search-input" placeholder="Событие, дата или участник">
+          </div>
+        </div>
+      </div>
+		</div>
+
+    <div class="cal">
+      <div class="container">
+        <div class="cal-nav">
+          <button id="prev" class="nav-btn btn-prev">&#9668;</button>
+          <span class="date"><span id="month"></span><span id="year"></span></span>
+          <button id="next" class="nav-btn btn-next">&#9658;</button>
+          <button id="today" class="nav-btn btn-today">Сегодня</button>
+        </div>
+        <div id="cal-table"></div>
+      </div>
+    </div>
+	</main>
+
+	<script src="js/scripts.min.js"></script>
+</body>
+</html>
