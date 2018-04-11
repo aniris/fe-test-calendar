@@ -65,16 +65,26 @@ function getTable(currentMouth, currentYear) {
     tbody = document.createElement('tbody');
     table.appendChild(tbody);
 
+    // день недели, с которого начинается месяц
+    let firstDayWeek = getStartMonth(currentYear, currentMouth);
+    let firstDayWeekMs = new Date(currentYear, currentMouth,1,0,0,0,0).getTime();
 
-    let firstDayMouth = getStartMonth(currentYear, currentMouth);
-    let firstDayMs = new Date(currentYear, currentMouth,1,0,0,0,0).getTime();
+    // первый день в таблице (откатываемся до понедельника)
+    if(firstDayWeek == 0) {
+        day = firstDayWeekMs - (constCal.day_ms*(6));
+    }
+    else {
+        day = firstDayWeekMs - (constCal.day_ms*(firstDayWeek-1));
+    }
 
-    // первый день в таблице
-    day = firstDayMs - (constCal.day_ms*(firstDayMouth-1));
     date = new Date(day);
 
+
     // генерация таблицы
-    for (let row = 0; row < 5; row++) {
+     for (let row = 0; row < 6; row++) {
+
+         if ((row == 5 || row == 4) && date.getMonth() != month)
+             break;
 
         // добаляем строку
         tr = document.createElement('tr');

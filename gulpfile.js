@@ -65,4 +65,7 @@ gulp.task('build', ['removedist', 'styles', 'js'], function() {
     var buildJs = gulp.src([
         'app/js/scripts.min.js',
     ]).pipe(gulp.dest('dist/js'));
+    var img = gulp.src([
+        'app/icons/*',
+    ]).pipe(gulp.dest('dist/icons'));
 });
