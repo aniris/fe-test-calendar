@@ -1,3 +1,12 @@
+const Events = [
+    {
+        day: 8,
+        month: 3,
+        year: 2018,
+        text: 'событие'
+    }
+];
+
 class constCal {
     constructor(week, mouth, day_ms) {
         this.week =  [
@@ -67,11 +76,6 @@ function getTable(currentMouth, currentYear) {
     day = firstDayMs - (cal.day_ms*(firstDayMouth-1));
     date = new Date(day);
 
-    console.log(firstDayMouth);
-    console.log(firstDayMs);
-    console.log(day);
-    console.log(date);
-
     // генерация таблицы
     for (let row = 0; row < 5; row++) {
 
@@ -89,6 +93,27 @@ function getTable(currentMouth, currentYear) {
                 td = addTD(date.getDate());
             }
 
+            // если текущий денб, добавляем соответствующий класс
+            if(date.getDate() == (new Date()).getDate() &&
+                date.getMonth() == (new Date()).getMonth() &&
+                date.getFullYear() == (new Date()).getFullYear()) {
+
+                td.classList.add("current-day");
+            }
+
+            // если в этот день есть событие, добавлем текст
+            Events.forEach(el => {
+                if(el.day == date.getDate() &&
+                    el.month == date.getMonth() &&
+                    el.year == date.getFullYear()) {
+
+                    let event = document.createElement('span');
+                    event.innerText = el.text;
+                    td.appendChild(event);
+                    td.classList.add("event");
+                }
+            });
+
             tr.appendChild(td);
             day += cal.day_ms; // получаем след день
             date = new Date(day);
@@ -96,4 +121,5 @@ function getTable(currentMouth, currentYear) {
     }
 }
 
-getTable(getCurrentDate().month + 1, getCurrentDate().year);
+getTable(getCurrentDate().month, getCurrentDate().year);
+

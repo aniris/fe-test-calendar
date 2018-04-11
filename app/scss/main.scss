@@ -85,3 +85,31 @@ button,input:focus {
   color: #606060;
   padding: 2px;
 }
+
+#cal-table {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td {
+    height: 100px;
+    padding: 5px;
+    font-size: 10px;
+    vertical-align: top;
+    border: 1px solid #aaa;
+    color: #aaa;
+    width: 14%;
+    cursor: pointer;
+    span {
+      display: block;
+      color: #555;
+      margin-top: 2px;
+    }
+    &.current-day {
+      background: #efefef;
+    }
+    &.event {
+      background-color: #BDE2FE;
+    }
+  }
+}
